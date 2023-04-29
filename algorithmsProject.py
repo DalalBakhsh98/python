@@ -4,20 +4,25 @@
 
 # Each processor has an [id, duration, and value] that will be inputed and time limit
 
+
+input_Array = input("Enter Processes P:")
+tuples = eval(input_Array)
+third_elements = [t[2] for t in tuples] # the tuble start from 0 so the third element of the set is 2
+print("The third elements are:", third_elements)
+
+# this the function that will do our calculation
 def schedule_processes(processors, time_limit):
     """
     Tries every possible combination of processors that can fit within the time limit
     then finds the combination that results in the maximum value.
-
     Parameters:
     processors (list of tuples): List of processors, each represented as a tuple (id, duration, value).
     time_limit (int): Total time available for scheduling the processors.
-
     Returns:
     tuple: A tuple containing the selected processors and their total value.
     """
     max_value = 0
-    selected_processors = []
+    selected_processors = []   # creating an empty list 
 
     # Try every possible combination of subsets
     for i in range(1, 2**len(processors)):
@@ -36,9 +41,9 @@ def schedule_processes(processors, time_limit):
     return selected_processors#, max_value
 
 
-p = [(1,3,21), (2,6,24), (3,2,12), (4,4,20)] # THESE ARE THE prosseces THE USER SHOULD INPUT THEM TEHE 
+#p = [(1,3,21), (2,6,24), (3,2,12), (4,4,20)]
 # print(schedule_processes(p,8))
-op_p=schedule_processes(p,8)
+op_p=schedule_processes(tuples,8)
 print('Selected processes:',[i[0] for i in op_p])
 print('total value is',sum(op_p[2] for op_p in op_p))
 print('total duration is',sum(op_p[1] for op_p in op_p))
